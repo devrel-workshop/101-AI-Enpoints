@@ -32,5 +32,5 @@ quarkus.langchain4j.mistralai.chat-model.model-name=Mistral-7B-Instruct-v0.2
 ```
   - Create the resource endpoint [ChatBotResource](../../java/chat-bot/src/main/java/com/ovhcloud/workshop/aiendpoints/resources/ChatBotResource.java)
   - Test the chat bot:
-    - run `quarkus dev` if you stopped it
+    - run `quarkus dev` if you had stopped it
     - test the chat bot: `http://localhost:8080/chatbot/blocking?question=%22Who%20are%20you?%22`
