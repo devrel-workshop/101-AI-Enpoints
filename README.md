@@ -1,28 +1,35 @@
 ## Welcome to the 101 lab source to discover AI Endpoints.
 
-## Resources
+## 🔗 Resources 🔗
  - https://endpoints.ai.cloud.ovh.net
  - https://blog.ovhcloud.com/enhance-your-applications-with-ai-endpoints/
  - https://blog.ovhcloud.com/how-to-use-ai-endpoints-and-langchain4j/
  - https://blog.ovhcloud.com/llms-streaming-with-ai-endpoints-and-langchain4j/
  - https://github.com/ovh/public-cloud-examples/tree/main/ai/ai-endpoints
 
-### Getting started
+### 🏁 Getting started 🏁
 
 To use this lab you just have to start GitPod by clicking on the following link: [Open in GitPod](https://gitpod.io/#https://github.com/devrel-workshop/101-AI-Enpoints)
 
-### Java module
+⚠️ Your location to create your own files to do the workshop is [workshop](./workshop/) ⚠️
+> You can also, just, run the lab solution in the dedicated folders [java](./java/), [python](./python/), [go](./go/) and [javascript](./js/).
 
-In the [java](./java/) you will find how to use AI Endpoints with Java.
+### ☕️ Java module ☕️
 
-### Python module
+In the [workshop/java](./workshop/java/) you will find the Java exercices.
+See dedicated [documentation](./workshop/java/README.md) for more information.
 
-In the [java](./python/) you will find how to use AI Endpoints with Python.
+### 🐍 Python module 🐍
 
-### Go module
+In the [workshop/python](./workshop/python/) you will find the Python exercices.
+See dedicated [documentation](./workshop/python/README.md) for more information.
 
-In the [java](./go/) you will find how to use AI Endpoints with Go.
+### 🦫 Go module 🦫
 
-### Javascript module
+In the [workshop/go](./workshop/go/) you will find the Go exercices.
+See dedicated [documentation](./workshop/go/README.md) for more information.
 
-In the [java](./js/) you will find how to use AI Endpoints with Javascript.
+### 🕸️ Javascript module 🕸️
+
+In the [workshop/javascript](./workshop/js/) you will find the Javascript exercices.
+See dedicated [documentation](./workshop/js/README.md) for more information.
