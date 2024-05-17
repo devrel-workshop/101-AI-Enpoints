@@ -123,3 +123,27 @@ public Multi<String> streaming(@RestQuery("question") String question) {
   - Test the chat bot:
     - run `quarkus dev` if you had stopped it
     - test the chat bot: `curl http://localhost:8080/chatbot/streaming?question=%22Can%20you%20explain%20in%20a%20long%20way%20xho%20are%20you?%22`
+
+## 💬 Part three: RAG 🗃️
+
+  - test the chat bot with recent information: `curl -N http://localhost:8080/chatbot/streaming?question=%22Who%20is%20the%20last%20France%20prime%20minister?%22`
+  - update the [pom.xml](../../java/chat-bot/pom.xml) with the following dependencies:
+```xml
+<dependency>
+  <groupId>io.quarkiverse.langchain4j</groupId>
+  <artifactId>quarkus-langchain4j-easy-rag</artifactId>
+  <version>${quarkus.langchain4j.version}</version>
+</dependency>
+<dependency>
+  <groupId>dev.langchain4j</groupId>
+  <artifactId>langchain4j-embeddings-all-minilm-l6-v2-q</artifactId>
+  <version>0.30.0</version>
+</dependency>
+```
+  - add the following configuration to the [application.properties](../../java/chat-bot/src/main/resources/application.properties):
+```java
+# RAG activation
+quarkus.langchain4j.easy-rag.path=../../java/chat-bot/src/main/resources/rag
+quarkus.langchain4j.mistralai.embedding-model.enabled=false
+```
+  - test again the chat bot: `curl -N http://localhost:8080/chatbot/streaming?question=%22Who%20is%20the%20last%20France%20prime%20minister?%22`
