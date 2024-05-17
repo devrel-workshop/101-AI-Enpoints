@@ -1,12 +1,10 @@
 package com.ovhcloud.workshop.aiendpoints.resources;
 
 import org.jboss.resteasy.reactive.RestQuery;
-import org.jboss.resteasy.reactive.RestStreamElementType;
 
 import com.ovhcloud.workshop.aiendpoints.services.MistralAIService;
-import dev.langchain4j.model.chat.StreamingChatLanguageModel;
+
 import io.smallrye.mutiny.Multi;
-import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
