@@ -117,7 +117,9 @@ Multi<String> askStreaming(String question);
 @Path("streaming")
 @GET
 public Multi<String> streaming(@RestQuery("question") String question) {
-  return Multi.createBy().concatenating().streams(Multi.createFrom().item(robot), aiService.askStreaming(question));
+    Multi<String> res = Multi.createBy().concatenating().streams(Multi.createFrom().item(robot), aiService.askStreaming(question));
+
+    return res.onItem().call(i -> Uni.createFrom().nullItem().onItem().delayIt().by(Duration.ofMillis(10)));
 }
 ```
   - Test the chat bot:
