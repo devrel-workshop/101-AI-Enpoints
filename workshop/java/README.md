@@ -21,4 +21,4 @@ To create a Quarkus project run the following command in the `/workshop/java` fo
 quarkus create app com.ovhcloud.workshop.aiendpoints:chat-bot \
     --extension='quarkus-langchain4j-mistral-ai,rest'
 ```
-Then, go to folder [chat-bot](./chat-bot/) and refer to the dedicated [documentation](./chat-bot/README.md) for more information. 
+Then, go to folder [java/chat-bot/](../../java/chat-bot) and refer to the dedicated [documentation](./chat-bot-exercice.md) for more information. 
