@@ -56,48 +56,44 @@ if __name__ == '__main__':
 ```
   - update the script [chatbot.py](../../python/chat-bot/chatbot.py) with the code above:
 ```python
-import gradio as gr
-import uvicorn
-import argparse
-import os
+# Unmodified code ...
 
-from fastapi import FastAPI
-
-from openai import OpenAI
+from langchain_mistralai import ChatMistralAI
+from langchain_core.prompts import ChatPromptTemplate
 
 # Chat UI for human interaction
 def chat_interface(args):
   # Function to call the LLM model
   # new-message: User message to send to the model
-  # args: Arguments from the command line
+  # context: Context of the conversation (history, ...)
   def chat_completion(new_message: str, context:str):
     # no need to use a token
-    client = OpenAI(base_url=f'{args.api}/api/openai_compat/v1', api_key='foo')
+    model = ChatMistralAI(model="Mixtral-8x22B-Instruct-v0.1", api_key="None",endpoint=f'{args.api}/api/openai_compat/v1', max_tokens=1500)
 
-    history_openai_format = []
-    for human, assistant in context:
-      history_openai_format.append({"role": "user", "content": human})
-      history_openai_format.append({"role": "assistant", "content": assistant})
+    prompt = ChatPromptTemplate.from_messages([
+      ("system", "You are a Nestor, a virtual assistant. Answer to the question."),
+      ("human", "{user_input}"),
+    ])
 
-    history_openai_format.append({"role": "user", "content": new_message})
-    response = client.chat.completions.create(model=args.model, messages=history_openai_format, temperature=args.temperature, stream=False, max_tokens=1024)
+    chain = prompt | model
 
-    return response.choices[0].message.content
+    response = chain.invoke(new_message)
+
+    return response.content
   
-  ui = gr.ChatInterface(chat_completion, fill_height=True, autofocus=False, concurrency_limit=None)
-
-  fastAPIApp = FastAPI()
-  gradioApp = gr.mount_gradio_app(fastAPIApp, ui, path=args.path)
+# Unmodified code ...
 
   return gradioApp
 
 # Main entrypoint
 def main():
-    # unmodified code
+# Unmodified code ...
 
     parser.add_argument('--api', default='http://localhost:8001')
     parser.add_argument('--temperature', default=1.0)
     parser.add_argument('--model', default=None)
+
+# Unmodified code ...
 
 ```
   - run `python3 chatbot.py --api https://mixtral-8x22b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net --model Mixtral-8x22B-Instruct-v0.1`
