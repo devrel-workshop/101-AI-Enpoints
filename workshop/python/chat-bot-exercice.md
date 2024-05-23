@@ -98,3 +98,43 @@ def main():
 ```
   - run `python3 chatbot.py --api https://mixtral-8x22b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net --model Mixtral-8x22B-Instruct-v0.1`
   - Test the chat bot with a browser: `http://http://0.0.0.0:8000/app/`
+
+## 💬 Part two: streaming chat completion 🔀
+
+  - update [chatbot.py](../../python/chat-bot/chatbot.py) to use the streaming API:
+```python
+# Unmodified code ...
+
+from langchain_mistralai import ChatMistralAI
+from langchain_core.prompts import ChatPromptTemplate
+
+# Chat UI for human interaction
+def chat_interface(args):
+  # Function to call the LLM model
+  # new-message: User message to send to the model
+  # context: Context of the conversation (history, ...)
+  def chat_completion(new_message: str, context:str):
+    # no need to use a token
+    model = ChatMistralAI(model="Mixtral-8x22B-Instruct-v0.1", 
+                          api_key="foo",
+                          endpoint=f'{args.api}/api/openai_compat/v1', 
+                          max_tokens=1500, 
+                          streaming=True)
+
+    prompt = ChatPromptTemplate.from_messages([
+      ("system", "You are a Nestor, a virtual assistant. Answer to the question."),
+      ("human", "{question}"),
+    ])
+
+    chain = prompt | model
+
+    response= ""
+    for r in chain.stream({"question", new_message}):
+      response = response + r.content
+      yield response
+  
+  ui = gr.ChatInterface(chat_completion, fill_height=True, autofocus=False, concurrency_limit=None)
+# Unmodified code ...
+```
+  - run `python3 chatbot.py --api https://mixtral-8x22b-instruct-v01.endpoints.kepler.ai.cloud.ovh.net --model Mixtral-8x22B-Instruct-v0.1`
+  - Test the chat bot with a browser: `http://http://0.0.0.0:8000/app/`
