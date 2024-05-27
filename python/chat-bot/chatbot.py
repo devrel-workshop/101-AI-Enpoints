@@ -37,7 +37,7 @@ def chat_interface(args):
 
 # Main entrypoint
 def main():
-    # Gest parameter from command line, for example python3 chatbot.py --port 8080
+    # Get parameter from command line, for example python3 chatbot.py --port 8080
     os.environ["GRADIO_ANALYTICS_ENABLED"] = str(False)
     parser = argparse.ArgumentParser()
     parser.add_argument('--port', default=8000)
