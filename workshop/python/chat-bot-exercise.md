@@ -8,7 +8,7 @@ You can find all solutions in the [python/chat-bot](../../python/chat-bot) folde
 ## 📦 Install the dependencies
 
   - Create a virtual environment: `python3 -m venv ./venv`
-  - Install the dependencies: `pip3 install -r requirements.txt` with the following content:
+  - Install the dependencies: `pip3 install -r python/chat-bot/requirements.txt` with the following content:
 ```python
 fastapi==0.110.0
 gradio==4.19.2
@@ -61,7 +61,7 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-  - add this step, the FastAPI and Gradio code is added, let's add the AI code by updating the script [chatbot.py](../../python/chat-bot/chatbot.py) with the code above:
+  - at this step, the FastAPI and Gradio code is added, let's add the AI code by updating the script [chatbot.py](../../python/chat-bot/chatbot.py) with the code above:
 ```python
 import gradio as gr
 import uvicorn
