@@ -54,7 +54,7 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-  - update the script [chatbot.py](../../python/chat-bot/chatbot.py) with the code above:
+  - update the script [chatbot.py](../../python/chat-bot/chatbot.py) with the code below:
 ```python
 # Unmodified code ...
 
