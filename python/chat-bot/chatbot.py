@@ -15,18 +15,23 @@ def chat_interface(args):
   # context: Context of the conversation (history, ...)
   def chat_completion(new_message: str, context:str):
     # no need to use a token
-    model = ChatMistralAI(model="Mixtral-8x22B-Instruct-v0.1", api_key="None",endpoint=f'{args.api}/api/openai_compat/v1', max_tokens=1500)
+    model = ChatMistralAI(model="Mixtral-8x22B-Instruct-v0.1", 
+                          api_key="foo",
+                          endpoint=f'{args.api}/api/openai_compat/v1', 
+                          max_tokens=1500, 
+                          streaming=True)
 
     prompt = ChatPromptTemplate.from_messages([
       ("system", "You are a Nestor, a virtual assistant. Answer to the question."),
-      ("human", "{user_input}"),
+      ("human", "{question}"),
     ])
 
     chain = prompt | model
 
-    response = chain.invoke(new_message)
-
-    return response.content
+    response= ""
+    for r in chain.stream({"question", new_message}):
+      response = response + r.content
+      yield response
   
   ui = gr.ChatInterface(chat_completion, fill_height=True, autofocus=False, concurrency_limit=None)
 
