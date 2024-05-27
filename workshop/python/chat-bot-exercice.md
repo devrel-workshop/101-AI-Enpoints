@@ -2,12 +2,19 @@
 
 ## ⚠️ Prerequisites ⚠️
 
-Before begging, we assume that you have created the `chat-bot` project, see section `Module 1: Chat bot with AI Endpoints` in the main [documentation](README.md).
+Before begging, we assume that you have created the `chat-bot` project, see section `Module 1: Chat bot with AI Endpoints` in the main [documentation](README.md).  
+You can find all solutions in the [python/chat-bot](../../python/chat-bot) folder.
 
 ## 📦 Install the dependencies
 
   - Create a `venv`: `python3 -m venv ./venv`
-  - Install the dependencies: `pip3 install -r requirements.txt`
+  - Install the dependencies: `pip3 install -r requirements.txt` with the following content:
+```python
+fastapi==0.110.0
+gradio==4.19.2
+openai==1.13.3
+langchain-mistralai
+```
 
 ## 💬 Part one: blocking chat completion 🛑
 
@@ -54,7 +61,7 @@ def main():
 if __name__ == '__main__':
     main()
 ```
-  - update the script [chatbot.py](../../python/chat-bot/chatbot.py) with the code above:
+  - add this step, the FastAPI and Gradio code is added, let's add the AI code by updating the script [chatbot.py](../../python/chat-bot/chatbot.py) with the code above:
 ```python
 # Unmodified code ...
 
