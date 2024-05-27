@@ -11,4 +11,4 @@ In the other case you need :
 The goal of this module is to develop a simple chat bot with AI Endpoints and Python.  
 To simplify some actions (REST request / UI), we'll use [FastAPI](https://fastapi.tiangolo.com/) and [Gradio](https://www.gradio.app/).
 
-Go to folder [python/chat-bot/](../../python/chat-bot) to have all the source code and refer to the dedicated [documentation](./chat-bot-exercice.md) to do the lab. 
+Go to folder [python/chat-bot/](../../python/chat-bot) to have all the source code and refer to the dedicated [documentation](./chat-bot-exercise.md) to do the lab. 
