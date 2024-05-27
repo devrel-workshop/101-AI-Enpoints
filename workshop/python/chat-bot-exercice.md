@@ -2,7 +2,7 @@
 
 ## ⚠️ Prerequisites ⚠️
 
-Before begging, we assume that you have created the `chat-bot` project, see section `Module 1: Chat bot with AI Endpoints` in the main [documentation](README.md).
+Before beginning, we assume that you have created the `chat-bot` project, see section `Module 1: Chat bot with AI Endpoints` in the main [documentation](README.md).
 
 ## 📦 Install the dependencies
 
