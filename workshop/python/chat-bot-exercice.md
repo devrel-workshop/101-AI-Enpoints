@@ -1,4 +1,4 @@
-## 🤖 Steps to do the chat bot exercices 💬
+## 🤖 Steps to do the chat bot exercises 💬
 
 ## ⚠️ Prerequisites ⚠️
 
@@ -7,7 +7,7 @@ You can find all solutions in the [python/chat-bot](../../python/chat-bot) folde
 
 ## 📦 Install the dependencies
 
-  - Create a `venv`: `python3 -m venv ./venv`
+  - Create a virtual environment: `python3 -m venv ./venv`
   - Install the dependencies: `pip3 install -r requirements.txt` with the following content:
 ```python
 fastapi==0.110.0
