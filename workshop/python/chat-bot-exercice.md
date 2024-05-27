@@ -6,7 +6,7 @@ Before beginning, we assume that you have created the `chat-bot` project, see se
 
 ## 📦 Install the dependencies
 
-  - Create a `venv`: `python3 -m venv ./venv`
+  - Create a python virtual environment: `python3 -m venv ./venv`
   - Install the dependencies: `pip3 install -r requirements.txt`
 
 ## 💬 Part one: blocking chat completion 🛑
