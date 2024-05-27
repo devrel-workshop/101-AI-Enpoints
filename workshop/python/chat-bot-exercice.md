@@ -1,4 +1,4 @@
-## 🤖 Steps to do the chat bot exercices 💬
+## 🤖 Steps to do the chat bot exercises 💬
 
 ## ⚠️ Prerequisites ⚠️
 
