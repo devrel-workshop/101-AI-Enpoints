@@ -2,25 +2,12 @@ import gradio as gr
 import uvicorn
 import argparse
 import os
-import time
 
 from fastapi import FastAPI
 
 from langchain_mistralai import ChatMistralAI
 from langchain_core.prompts import ChatPromptTemplate
 
-from langchain import hub
-
-from langchain_mistralai import ChatMistralAI
-
-from langchain_chroma import Chroma
-
-from langchain_community.document_loaders import DirectoryLoader
-from langchain_community.embeddings.ovhcloud import OVHCloudEmbeddings
-
-from langchain_core.runnables import RunnablePassthrough
-
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # Factory to create the callback function for the chat interface
 def callback_factory(model: ChatMistralAI):
@@ -28,32 +15,19 @@ def callback_factory(model: ChatMistralAI):
     # new-message: User message to send to the model
     # context: Context of the conversation (history, ...)
     def chat_completion(new_message: str, context: str):
-        # Load documents from a local directory
-        loader = DirectoryLoader(
-            glob="**/*",
-            path="./rag-files/",
-            show_progress=True
-        )
-        docs = loader.load()
-
-        # Split documents into chunks and vectorize them
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-        splits = text_splitter.split_documents(docs)
-        vectorstore = Chroma.from_documents(documents=splits, embedding=OVHCloudEmbeddings(model_name="multilingual-e5-base"))
-
-        prompt = hub.pull("rlm/rag-prompt")
-
-        rag_chain = (
-            {"context": vectorstore.as_retriever(), "question": RunnablePassthrough()}
-            | prompt
-            | model
+        prompt = ChatPromptTemplate.from_messages(
+            [
+                (
+                    'system',
+                    'You are a Nestor, a virtual assistant. Answer to the question.',
+                ),
+                ('human', '{user_input}'),
+            ]
         )
 
-        response = ""
-        for r in rag_chain.stream({"question", new_message}):
-            time.sleep(0.150)
-            response = response + r.content
-            yield response
+        chain = prompt | model
+
+        return chain.invoke(new_message).content
 
     return chat_completion
 
