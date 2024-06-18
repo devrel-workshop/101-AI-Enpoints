@@ -7,7 +7,6 @@ Before begging, we assume that you have created the `chat-bot` project, see sect
 ## ⚗️ Test the created project
 
   - Run the following command `quarkus dev`.
-  - Test the Greetings API: `curl http://localhost:8080/hello`
 
 ## 💬 Part one: blocking chat completion 🛑
 
@@ -69,15 +68,16 @@ import jakarta.ws.rs.core.MediaType;
  * Endpoint to use the chatbot.
  */
 @Path("/chatbot")
-public class ChatBotResource {
+public class ChatbotBlockingResource {
 
   @Inject
   private MistralAIService aiService;
 
-  private static String robot="🤖:\n";
+  private static String robot = "🤖:\n";
 
   /**
-   * Use the chat in a blocking way (i.e wait that the model send the complete response)
+   * Use the chat in a blocking way (i.e wait that the model send the complete
+   * response)
    * 
    * @return The model response.
    */
@@ -85,7 +85,7 @@ public class ChatBotResource {
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   public String blocking(@RestQuery("question") String question) {
-    return  robot + aiService.ask(question);
+    return robot + aiService.ask(question);
   }
 }
 ```
@@ -95,40 +95,87 @@ public class ChatBotResource {
 
 ## 💬 Part two: streaming chat completion 🔀
 
-  - update the interface [MistralAIService](../../java/chat-bot/src/main/java/com/ovhcloud/workshop/aiendpoints/services/MistralAIService.java) with the following code:
+  - create the interface [MistralAIStreamingService](../../java/chat-bot/src/main/java/com/ovhcloud/workshop/aiendpoints/services/MistralAIStreamingService.java) with the following code:
 ```java
-/**
- * Streaming call: the response is sent bloc by bloc by the model.
- * 
- * @param question The question to ask to the model.
- * @return The model answer.
- */
-@SystemMessage("You are a Nestor, a virtual assistant.")
-@UserMessage("Answer to the question: {question}.")
-Multi<String> askStreaming(String question);
-```
-  - update the resource endpoint [ChatBotResource](../../java/chat-bot/src/main/java/com/ovhcloud/workshop/aiendpoints/resources/ChatBotResource.java):
-```java
-/**
-  * Use the chat in a streaming way
-  * 
-  * @return The model response.
-  */
-@Path("streaming")
-@GET
-public Multi<String> streaming(@RestQuery("question") String question) {
-    Multi<String> res = Multi.createBy().concatenating().streams(Multi.createFrom().item(robot), aiService.askStreaming(question));
+package com.ovhcloud.workshop.aiendpoints.services;
 
-    return res.onItem().call(i -> Uni.createFrom().nullItem().onItem().delayIt().by(Duration.ofMillis(10)));
+import dev.langchain4j.service.SystemMessage;
+import dev.langchain4j.service.UserMessage;
+import io.quarkiverse.langchain4j.RegisterAiService;
+import io.smallrye.mutiny.Multi;
+
+/**
+ * Service to call Mistral AI endpoint in streaming mode  .
+ */
+@RegisterAiService
+public interface MistralAIStreamingService {
+  
+/**
+   * Streaming call: the response is sent bloc by bloc by the model.
+   * @param question The question to ask to the model.
+   * @return The model answer.
+   */
+  @SystemMessage("You are a Nestor, a virtual assistant.")
+  @UserMessage("Answer to the question: {question}.")
+  Multi<String> ask(String question);
+}
+```
+  - create the resource endpoint [ChatbotStreamingResource](../../java/chat-bot/src/main/java/com/ovhcloud/workshop/aiendpoints/resources/ChatbotStreamingResource.java):
+```java
+package com.ovhcloud.workshop.aiendpoints.resources;
+
+import java.time.Duration;
+import org.jboss.resteasy.reactive.RestQuery;
+import com.ovhcloud.workshop.aiendpoints.services.MistralAIStreamingService;
+import io.smallrye.mutiny.Multi;
+import io.smallrye.mutiny.Uni;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
+/**
+ * Endpoint to use the chatbot.
+ */
+@Path("/chatbot")
+public class ChatbotStreamingResource {
+
+  @Inject
+  private MistralAIStreamingService aiService;
+
+  private static String robot = "🤖:\n";
+
+  /**
+   * Use the chat in a streaming way
+   * 
+   * @return The model response.
+   */
+  @Path("streaming")
+  @GET
+  public Multi<String> streaming(@RestQuery("question") String question) {
+    Multi<String> res = Multi.createBy()
+      .concatenating()
+      .streams(Multi.createFrom()
+                      .item(robot), aiService.ask(question)
+      );
+
+    return res
+            .onItem()
+            .call(i -> Uni.createFrom()
+                                        .nullItem()
+                                        .onItem()
+                                        .delayIt()
+                                        .by(Duration.ofMillis(200))
+            );
+  }
 }
 ```
   - Test the chat bot:
     - run `quarkus dev` if you had stopped it
-    - test the chat bot: `curl http://localhost:8080/chatbot/streaming?question=%22Can%20you%20explain%20in%20a%20long%20way%20xho%20are%20you?%22`
+    - test the chat bot: `curl -N http://localhost:8080/chatbot/streaming?question=%22Who%20are%20you?%22`
 
 ## 💬 Part three: RAG 🗃️
 
-  - test the chat bot with recent information: `curl -N http://localhost:8080/chatbot/streaming?question=%22Who%20is%20the%20last%20France%20prime%20minister?%22`
+  - test the chat bot with recent information: `curl -N http://localhost:8080/chatbot/streaming?question=%22What%20is%20AI%20Endpoints?%22`
   - update the [pom.xml](../../java/chat-bot/pom.xml) with the following dependencies:
 ```xml
 <dependency>
@@ -145,7 +192,7 @@ public Multi<String> streaming(@RestQuery("question") String question) {
   - add the following configuration to the [application.properties](../../java/chat-bot/src/main/resources/application.properties):
 ```java
 # RAG activation
-quarkus.langchain4j.easy-rag.path=../../java/chat-bot/src/main/resources/rag
+quarkus.langchain4j.easy-rag.path=../../java/chat-bot/src/main/resources/rag-files
 quarkus.langchain4j.mistralai.embedding-model.enabled=false
 ```
-  - test again the chat bot: `curl -N http://localhost:8080/chatbot/streaming?question=%22Who%20is%20the%20last%20France%20prime%20minister?%22`
+  - test again the chat bot: `curl -N http://localhost:8080/chatbot/streaming?question=%22What%20is%20AI%20Endpoints?%22`
