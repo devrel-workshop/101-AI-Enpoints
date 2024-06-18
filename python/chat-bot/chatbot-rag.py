@@ -28,18 +28,6 @@ def callback_factory(model: ChatMistralAI):
     # new-message: User message to send to the model
     # context: Context of the conversation (history, ...)
     def chat_completion(new_message: str, context: str):
-        prompt = ChatPromptTemplate.from_messages(
-            [
-                (
-                    'system',
-                    'You are a Nestor, a virtual assistant. Answer to the question.',
-                ),
-                ('human', '{user_input}'),
-            ]
-        )
-
-        #chain = prompt | model
-
         # Load documents from a local directory
         loader = DirectoryLoader(
             glob="**/*",
