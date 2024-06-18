@@ -2,6 +2,7 @@ import gradio as gr
 import uvicorn
 import argparse
 import os
+import time
 
 from fastapi import FastAPI
 
@@ -27,9 +28,11 @@ def callback_factory(model: ChatMistralAI):
 
         chain = prompt | model
 
-        response = chain.invoke(new_message)
-
-        return response.content
+        response = ""
+        for r in chain.stream({"user_input", new_message}):
+            time.sleep(0.150)
+            response = response + r.content
+            yield response
 
     return chat_completion
 
