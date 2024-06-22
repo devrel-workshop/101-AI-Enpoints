@@ -1,4 +1,8 @@
 fastapi==0.110.0
-gradio==4.19.2
-openai==1.13.3
+langchain
 langchain-mistralai
+langchain_community
+langchain_chroma
+argparse
+unstructured
+langchainhub
