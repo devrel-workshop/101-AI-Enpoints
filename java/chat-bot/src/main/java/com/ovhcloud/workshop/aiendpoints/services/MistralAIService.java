@@ -20,14 +20,4 @@ public interface MistralAIService {
   @SystemMessage("You are a Nestor, a virtual assistant.")
   @UserMessage("Answer to the question: {question}.")
   String ask(String question);
-
-  /**
-   * Streaming call: the response is sent bloc by bloc by the model.
-   * 
-   * @param question The question to ask to the model.
-   * @return The model answer.
-   */
-  @SystemMessage("You are a Nestor, a virtual assistant.")
-  @UserMessage("Answer to the question: {question}.")
-  Multi<String> askStreaming(String question);
 }
