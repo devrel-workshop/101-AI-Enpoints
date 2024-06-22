@@ -8,7 +8,7 @@ You can find all solutions in the [python/chat-bot](../../python/chat-bot) folde
 ## 📦 Install the dependencies
 
   - Create a virtual environment: `python3 -m venv ./venv`
-  - Install the dependencies: `pip3 install -r python/chat-bot/requirements.txt` with the following content:
+  - Install the dependencies: `pip3 install -r requirements.txt` with the following content:
 ```python
 fastapi
 langchain
