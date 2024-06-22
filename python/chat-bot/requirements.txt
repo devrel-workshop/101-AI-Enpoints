@@ -6,3 +6,4 @@ langchain_chroma
 argparse
 unstructured
 langchainhub
+gradio
