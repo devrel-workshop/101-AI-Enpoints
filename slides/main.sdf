@@ -1,0 +1,15 @@
+/::
+custom_css: assets/css/custom.css
+::/
+
+# Développer avec l'IA : et si c'était aussi simple qu'ajouter une librairie ? 
+
+!image(assets/images/codeurs-en-seine-logo.png,, )
+
+!include(sub-slides/speaker.sdf)
+
+!include(sub-slides/ovhcloud-world.sdf)
+
+!include(sub-slides/thanks.sdf)
+
+!include(sub-slides/links.sdf)
