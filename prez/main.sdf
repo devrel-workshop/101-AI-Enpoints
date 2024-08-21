@@ -6,10 +6,10 @@ custom_css: assets/css/custom.css
 
 !image(assets/images/codeurs-en-seine-logo.png,, )
 
-!include(sub-slides/speaker.sdf)
+!include(slides/speaker.sdf)
 
-!include(sub-slides/ovhcloud-world.sdf)
+!include(slides/ovhcloud-world.sdf)
 
-!include(sub-slides/thanks.sdf)
+!include(slides/thanks.sdf)
 
-!include(sub-slides/links.sdf)
+!include(slides/links.sdf)
