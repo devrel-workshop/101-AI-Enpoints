@@ -1,3 +1,4 @@
 #!/bin/bash
-echo "This can contains all command to be launched when the container is started" > envfile
-echo "from subfolder"
+echo "Trick to launch setup script from the project from Coder template"
+# we are supposed to find the cloned repository
+101-AI-Enpoints/setup_env.sh
