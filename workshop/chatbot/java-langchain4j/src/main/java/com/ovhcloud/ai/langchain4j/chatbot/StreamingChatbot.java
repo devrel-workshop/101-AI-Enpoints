@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
  * - add parameters to create a virtual assistant named Nestor
  * - ask a question and display the answer in a streaming way
  */
-public class AdvancedChatbot {
-  private static final Logger _LOG = LoggerFactory.getLogger(AdvancedChatbot.class);
+public class StreamingChatbot {
+  private static final Logger _LOG = LoggerFactory.getLogger(StreamingChatbot.class);
 
   // AI Service to create, see https://docs.langchain4j.dev/tutorials/ai-services
 
