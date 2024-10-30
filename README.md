@@ -24,7 +24,9 @@ Once the file is created, you have to fill it with your values:
   - OVH_AI_ENDPOINTS_MODEL_NAME: set `Mistral-7B-Instruct-v0.2`
 > You can see all available models here: https://endpoints.ai.cloud.ovh.net/catalog
 
-⚠️ Your location to create your own files to do the workshop is [workshop](./workshop/) ⚠️
+## 🗃️ Folder organisation 🗃️
+
+**⚠️ Your location to create your own files to do the workshop is [workshop](./workshop/) ⚠️**
 > You can also, just, run the workshop solution in the dedicated folders [java](./java/), [python](./python/), [go](./go/) and [javascript](./js/).
 
 ### ☕️ Java module ☕️
