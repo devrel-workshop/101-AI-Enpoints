@@ -37,6 +37,6 @@ venv/
 .env
 
 # Java
-target/s
+target/
 
 
