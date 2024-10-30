@@ -233,19 +233,22 @@ resource "kubernetes_deployment" "main" {
   }
 }
 
+module "git-clone" {
+  source      = "registry.coder.com/modules/git-clone/coder"
+  version     = "1.0.18"
+  agent_id    = coder_agent.main.id
+  url         = "https://github.com/devrel-workshop/101-AI-Enpoints"
+  branch_name = "add-coder-template-files"
+  order       = 1
+}
+
 resource "coder_script" "setup_script" {
   agent_id     = coder_agent.main.id
   display_name = "Create all needed environment variables"
   run_on_start = true
   script = templatefile("${path.module}/setup.sh", {
   })
-}
-
-module "git-clone" {
-  source   = "registry.coder.com/modules/git-clone/coder"
-  version  = "1.0.18"
-  agent_id = coder_agent.main.id
-  url      = "https://github.com/devrel-workshop/101-AI-Enpoints"
+  depends_on = [ coder_script.git-clone ]
 }
 
 module "code-server" {
