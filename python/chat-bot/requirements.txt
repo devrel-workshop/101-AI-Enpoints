@@ -1,9 +1,0 @@
-fastapi
-langchain
-langchain-mistralai
-langchain_community
-langchain_chroma
-argparse
-unstructured
-langchainhub
-gradio

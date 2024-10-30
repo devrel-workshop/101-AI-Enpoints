@@ -1,0 +1,5 @@
+fr/wilda/ai/chatbot/RAGStreamingChatbot$Assistant.class
+fr/wilda/ai/nlp/SentimentsAnalysis.class
+fr/wilda/ai/chatbot/MemoryStreamingChatbot.class
+fr/wilda/ai/chatbot/MemoryStreamingChatbot$Assistant.class
+fr/wilda/ai/chatbot/RAGStreamingChatbot.class
