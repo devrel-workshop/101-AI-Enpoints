@@ -30,5 +30,10 @@ replay_pid*
 venv/
 .venv/
 
+
 # Configuration files
 .env
+
+# MacOS
+.DS_Store
+
