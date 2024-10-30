@@ -45,8 +45,8 @@ public class AdvancedChatbot {
         .build();
 
     // Send a prompt
-    _LOG.info("💬: What the Codeurs en Seine conference?\n");
-    TokenStream tokenStream = assistant.chat("What the Codeurs en Seine conference?");
+    _LOG.info("💬: What is the Codeurs en Seine conference?\n");
+    TokenStream tokenStream = assistant.chat("What is the Codeurs en Seine conference?");
     _LOG.info("🤖: ");
     tokenStream
         .onNext(_LOG::info)

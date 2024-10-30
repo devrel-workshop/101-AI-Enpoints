@@ -44,8 +44,8 @@ public class SimpleChatbot {
         .build();
 
     // Send a prompt
-    _LOG.info("💬: Question: What the Codeurs en Seine conference?\n");
-    _LOG.info("🤖: {}", assistant.chat("What the Codeurs en Seine conference?"));
+    _LOG.info("💬: Question: What is the Codeurs en Seine conference?\n");
+    _LOG.info("🤖: {}", assistant.chat("What is the Codeurs en Seine conference?"));
   }
 
 }
