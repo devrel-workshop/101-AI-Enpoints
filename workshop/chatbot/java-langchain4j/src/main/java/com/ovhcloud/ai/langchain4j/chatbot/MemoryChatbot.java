@@ -11,19 +11,22 @@ import org.slf4j.LoggerFactory;
  * - use the LangChain4J wrapper / lib to do the call to the model (use the AI
  * Service style), ⚠️ don't forget your pom.xml ⚠️
  * - Use the streaming option, see https://docs.langchain4j.dev/tutorials/response-streaming
+ * - Save the context in memory, see https://docs.langchain4j.dev/tutorials/chat-memory 
  * - add parameters to create a virtual assistant named Nestor
- * - ask a question and display the answer in a streaming way
+ * - ask two questions to test the chatbot memory and display the answer in a streaming way
  */
-public class StreamingChatbot {
-  private static final Logger _LOG = LoggerFactory.getLogger(StreamingChatbot.class);
+public class MemoryChatbot {
+  private static final Logger _LOG = LoggerFactory.getLogger(MemoryChatbot.class);
 
   // AI Service to create, see https://docs.langchain4j.dev/tutorials/ai-services
 
   public static void main(String[] args) {
     // Select the Mistral model to use (the streaming one)
 
+    // Create the memory store "in memory"
+
     // Build the chatbot thanks to the AIService builder
-    // The chatbot must be in streaming mode
+    // The chatbot must be in streaming mode with memory
 
     // Send a prompt
   }

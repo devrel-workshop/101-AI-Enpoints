@@ -3,6 +3,8 @@ package com.ovhcloud.ai.langchain4j.chatbot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dev.langchain4j.memory.ChatMemory;
+import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.mistralai.MistralAiStreamingChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.TokenStream;
@@ -15,11 +17,12 @@ import dev.langchain4j.service.TokenStream;
  * - use the LangChain4J wrapper / lib to do the call to the model (use the AI
  * Service style), ⚠️ don't forget your pom.xml ⚠️
  * - Use the streaming option, see https://docs.langchain4j.dev/tutorials/response-streaming
+ * - Save the context in memory, see https://docs.langchain4j.dev/tutorials/chat-memory 
  * - add parameters to create a virtual assistant named Nestor
- * - ask a question and display the answer in a streaming way
+ * - ask two questions to test the chatbot memory and display the answer in a streaming way
  */
-public class StreamingChatbot {
-  private static final Logger _LOG = LoggerFactory.getLogger(StreamingChatbot.class);
+public class MemoryChatbot {
+  private static final Logger _LOG = LoggerFactory.getLogger(MemoryChatbot.class);
 
   // AI Service to create, see https://docs.langchain4j.dev/tutorials/ai-services
   interface Assistant {
@@ -39,18 +42,29 @@ public class StreamingChatbot {
         .logResponses(false)
         .build();
 
+    // Create the memory store "in memory"
+    ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
+
     // Build the chatbot thanks to the AIService builder
-    // The chatbot must be in streaming mode
+    // The chatbot must be in streaming mode with memory
     Assistant assistant = AiServices.builder(Assistant.class)
         .streamingChatLanguageModel(steamingModel)
+        .chatMemory(chatMemory)
         .build();
 
     // Send a prompt
-    _LOG.info("💬: What is the Codeurs en Seine conference?\n");
-    TokenStream tokenStream = assistant.chat("What is the Codeurs en Seine conference?");
-    _LOG.info("🤖: ");
-    tokenStream
-        .onNext(_LOG::info)
-        .onError(Throwable::printStackTrace).start();
+    _LOG.info("💬: My name is Stéphane.\n");
+        TokenStream tokenStream = assistant.chat("My name is Stéphane.");
+        _LOG.info("🤖: ");
+        tokenStream
+                .onNext(_LOG::info)
+                .onComplete(token -> {
+                    _LOG.info("\n💬: Do you remember what is my name?\n");
+                    _LOG.info("🤖: ");
+                    assistant.chat("Do you remember what is my name?")
+                            .onNext(_LOG::info)
+                            .onError(Throwable::printStackTrace).start();
+                })
+                .onError(Throwable::printStackTrace).start();
   }
 }
