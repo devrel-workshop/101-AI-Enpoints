@@ -21,7 +21,7 @@ The exercice is divided in 4 parts:
 1. Create a simple chatbot: [SimpleChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/SimpleChatbot.java)
 1. Create a streaming chatbot: [StreamingChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/StreamingChatbot.java)
 1. Create a memory chatbot: [MemoryChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/MemoryChatbot.java)
-1. Create a chatbot with RAG: [AdvancedChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/StreamingChatbot.java)
+1. Create a chatbot with RAG: [RAGChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/RAGChatbot.java)
 
 And at the end assembling all the parts to create a complete chatbot.
 
@@ -30,9 +30,10 @@ And at the end assembling all the parts to create a complete chatbot.
  - [MistralAI integration](https://docs.langchain4j.dev/integrations/language-models/mistral-ai) in LangChain4j
 
 ⚗️ Test your code by running the following commands: 
- - Simple chatbot: `mvn clean compile & mvn exec:java -Dexec.mainClass="com.ovhcloud.ai.langchain4j.chatbot.SimpleChatbot"`
- - Advanced chatbot: `mvn clean compile & mvn exec:java -Dexec.mainClass="com.ovhcloud.ai.langchain4j.chatbot.StreamingChatbot"`
- - Memory chatbot: `mvn clean compile & mvn exec:java -Dexec.mainClass="com.ovhcloud.ai.langchain4j.chatbot.MemoryChatbot"`
+ - Simple chatbot: `mvn clean compile && mvn exec:java -Dexec.mainClass="com.ovhcloud.ai.langchain4j.chatbot.SimpleChatbot"`
+ - Advanced chatbot: `mvn clean compile && mvn exec:java -Dexec.mainClass="com.ovhcloud.ai.langchain4j.chatbot.StreamingChatbot"`
+ - Memory chatbot: `mvn clean compile && mvn exec:java -Dexec.mainClass="com.ovhcloud.ai.langchain4j.chatbot.MemoryChatbot"`
+ - RAG chatbot: `mvn clean compile && mvn exec:java -Dexec.mainClass="com.ovhcloud.ai.langchain4j.chatbot.RAGChatbot"`
 
 👩‍💻 How to develop ? 🧑‍💻
 
@@ -46,5 +47,6 @@ And at the end assembling all the parts to create a complete chatbot.
     - the [content.txt](./java-langchain4j/src/resources/rag-files/content.txt) file for RAG part
     - the [StreamingChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/StreamingChatbot.java) class
     - the [MemoryChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/MemoryChatbot.java) class
+    - the [RAGChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/RAGChatbot.java) class
 
 ### 🤖 Module 2: Chatbot with AI Endpoints and Quarkus ⚡️

@@ -25,15 +25,21 @@
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j</artifactId>
       <version>${langchain4j.version}</version>
-  </dependency>
-  
-  <dependency>
+    </dependency>
+
+    <dependency>
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j-mistral-ai</artifactId>
       <version>${langchain4j.version}</version>
-  </dependency>
+    </dependency>
 
-    <!-- java-07-rag-dependency -->
+    <!-- Here you have to put the right dependency to use OVHcloud embeded model, see
+    https://docs.langchain4j.dev/integrations/embedding-models/ovh-ai -->
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-ovh-ai</artifactId>
+      <version>${langchain4j.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>ch.qos.logback</groupId>
