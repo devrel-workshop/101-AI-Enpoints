@@ -57,7 +57,6 @@ The exercice is divided in 5 parts:
 1. Create a simple chatbot: [SimpleChatbot](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/SimpleResource.java)
 1. Create a streaming chatbot: [AdvancedResource](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/AdvancedResource.java)
 1. Create a memory chatbot: [MemoryChatbot](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/MemoryResource.java)
-1. Create a chatbot with RAG: [RAGChatbot](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/)
 
 And at the end assembling all the parts to create a complete chatbot.
 

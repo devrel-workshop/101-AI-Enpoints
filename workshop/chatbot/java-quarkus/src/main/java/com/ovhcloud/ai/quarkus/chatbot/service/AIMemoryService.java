@@ -14,6 +14,7 @@ import jakarta.enterprise.context.ApplicationScoped;
  * Set a system message to indicate that this a virtual assistant named Nestor
  * Set a user message to answer to questions.
  * The response must be in a streaming mode.
+ * The chatbot must remember previous messages.
  * The scope of the bean is application.
  */
 public interface AIMemoryService {
