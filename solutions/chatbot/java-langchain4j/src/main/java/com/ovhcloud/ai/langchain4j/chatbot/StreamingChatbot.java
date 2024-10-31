@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import dev.langchain4j.model.mistralai.MistralAiStreamingChatModel;
 import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.TokenStream;
 
 /**
@@ -22,6 +23,7 @@ public class StreamingChatbot {
   private static final Logger _LOG = LoggerFactory.getLogger(StreamingChatbot.class);
 
   // AI Service to create, see https://docs.langchain4j.dev/tutorials/ai-services
+  @SystemMessage("You are Nestor, a virtual assistant. Answer to the question.")
   interface Assistant {
     TokenStream chat(String message);
   }

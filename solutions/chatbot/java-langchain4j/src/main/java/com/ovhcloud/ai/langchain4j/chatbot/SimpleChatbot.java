@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import dev.langchain4j.model.mistralai.MistralAiChatModel;
 import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.SystemMessage;
 
 /**
  * Here is the place where you will add the code to create a simple blocking
@@ -21,6 +22,7 @@ public class SimpleChatbot {
   private static final Logger _LOG = LoggerFactory.getLogger(SimpleChatbot.class);
 
   // AI Service to create, see https://docs.langchain4j.dev/tutorials/ai-services
+  @SystemMessage("You are Nestor, a virtual assistant. Answer to the question.")
   interface Assistant {
     String chat(String message);
   }

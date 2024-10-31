@@ -20,6 +20,7 @@ import dev.langchain4j.model.ovhai.OvhAiEmbeddingModel;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
 import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.TokenStream;
 import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
@@ -46,6 +47,7 @@ public class RAGChatbot {
   private static final Logger _LOG = LoggerFactory.getLogger(RAGChatbot.class);
 
   // AI Service to create, see https://docs.langchain4j.dev/tutorials/ai-services
+  @SystemMessage("You are Nestor, a virtual assistant. Answer to the question.")
   interface Assistant {
     TokenStream chat(String message);
   }
