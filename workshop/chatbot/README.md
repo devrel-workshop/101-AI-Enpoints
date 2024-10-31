@@ -55,8 +55,8 @@ And at the end assembling all the parts to create a complete chatbot.
 The goal of this module is to develop a simple chat bot with AI Endpoints and Quarkus.  
 The exercice is divided in 5 parts:
 1. Create a simple chatbot: [SimpleChatbot](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/SimpleResource.java)
-1. Create a streaming chatbot: [AdvancedResource](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/)
-1. Create a memory chatbot: [MemoryChatbot](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/)
+1. Create a streaming chatbot: [AdvancedResource](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/AdvancedResource.java)
+1. Create a memory chatbot: [MemoryChatbot](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/MemoryResource.java)
 1. Create a chatbot with RAG: [RAGChatbot](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/)
 
 And at the end assembling all the parts to create a complete chatbot.
@@ -78,6 +78,17 @@ curl  -N http://localhost:8080/chatbot/simple \
 ```
 curl  -N http://localhost:8080/chatbot/advanced \
       -X POST -d '{"question":"Can you tell me what OVHcloud is and what kind of products it offers?"}' \
+      -H 'Content-Type: application/json'
+```
+  - Memory chatbot:
+```
+curl  -N http://localhost:8080/chatbot/memory \
+      -X POST -d '{"question":"My name is Stéphane"}' \
+      -H 'Content-Type: application/json'
+```
+```
+curl  -N http://localhost:8080/chatbot/memory \
+      -X POST -d '{"question":"What is my name?"}' \
       -H 'Content-Type: application/json'
 ```
 
@@ -104,3 +115,5 @@ quarkus create app com.ovhcloud.ai.quarkus.chatbot:java-quarkus \
     - the [application.properties](./java-quarkus/src/main/resources/application.properties) file
     - the [AIAdvancedService](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/service/AIAdvancedService.java)
     - the [AIAdvancedResource](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/AdvancedResource.java)
+    - the [AIMemoryService](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/service/AIMemoryService.java)
+    - the [MemoryResource](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/MemoryResource.java)    
