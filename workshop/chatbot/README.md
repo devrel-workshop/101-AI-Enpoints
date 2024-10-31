@@ -55,9 +55,9 @@ And at the end assembling all the parts to create a complete chatbot.
 The goal of this module is to develop a simple chat bot with AI Endpoints and Quarkus.  
 The exercice is divided in 5 parts:
 1. Create a simple chatbot: [SimpleChatbot](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/SimpleResource.java)
-1. Create a streaming chatbot: [StreamingChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/StreamingChatbot.java)
-1. Create a memory chatbot: [MemoryChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/MemoryChatbot.java)
-1. Create a chatbot with RAG: [RAGChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/RAGChatbot.java)
+1. Create a streaming chatbot: [AdvancedResource](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/)
+1. Create a memory chatbot: [MemoryChatbot](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/)
+1. Create a chatbot with RAG: [RAGChatbot](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/)
 
 And at the end assembling all the parts to create a complete chatbot.
 
@@ -74,9 +74,13 @@ curl  -N http://localhost:8080/chatbot/simple \
       -X POST -d '{"question":"Can you tell me what OVHcloud is and what kind of products it offers?"}' \
       -H 'Content-Type: application/json'
 ```
+  - Advanced chatbot:
+```
+curl  -N http://localhost:8080/chatbot/advanced \
+      -X POST -d '{"question":"Can you tell me what OVHcloud is and what kind of products it offers?"}' \
+      -H 'Content-Type: application/json'
+```
 
-
-  - start the react client in [react-client](../../solutions/chatbot/react-client) : `npm start`
 
 #### 👩‍💻 How to develop ? 🧑‍💻
 
@@ -98,10 +102,5 @@ quarkus create app com.ovhcloud.ai.quarkus.chatbot:java-quarkus \
     - the [AISimpleService](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/service/AISimpleService.java) class
     - the [SimpleResource](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/SimpleResource.java) class
     - the [application.properties](./java-quarkus/src/main/resources/application.properties) file
-
-
-
-
-    - the [StreamingChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/StreamingChatbot.java) class
-    - the [MemoryChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/MemoryChatbot.java) class
-    - the [RAGChatbot](./java-langchain4j/src/main/java/com/ovhcloud/ai/langchain4j/chatbot/RAGChatbot.java) class
+    - the [AIAdvancedService](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/service/AIAdvancedService.java)
+    - the [AIAdvancedResource](./java-quarkus/src/main/java/com/ovhcloud/ai/quarkus/chatbot/AdvancedResource.java)
